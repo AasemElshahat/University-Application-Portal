@@ -1,0 +1,36 @@
+import LandingPage from "./auth/LandingPage";
+import StartPage from "./auth/StartPage";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { RootState } from "./store/store";
+import { useSelector } from "react-redux";
+import UserManagementPage from "./userManagement/UserManagementPage";
+
+const App = () => {
+  const user = useSelector((state: RootState) => state.auth.user);
+
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={user ? <Navigate to="/home" replace /> : <LandingPage />}
+      />
+      <Route
+        path="/home"
+        element={user ? <StartPage /> : <Navigate to="/" replace />}
+      />
+      <Route
+        path="/userManagement"
+        element={
+          user?.isAdministrator ? (
+            <UserManagementPage />
+          ) : (
+            <Navigate to="/home" />
+          )
+        }
+      />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+};
+
+export default App;
