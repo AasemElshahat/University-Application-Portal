@@ -5,6 +5,9 @@ import { RootState } from "./store/store";
 import { useSelector } from "react-redux";
 import UserManagementPage from "./userManagement/UserManagementPage";
 import NavigationBar from "./components/Navigation/Navbar";
+import DegreeCourseManagementPage from "./degreeCourseManagement/DegreeCourseManagementPage";
+import CreateDegreeCourse from "./degreeCourseManagement/components/CreateDegreeCourse";
+import EditDegreeCourse from "./degreeCourseManagement/components/EditDegreeCourse";
 
 const App = () => {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -28,6 +31,35 @@ const App = () => {
               <UserManagementPage />
             ) : (
               <Navigate to="/home" />
+            )
+          }
+        />
+        {/* Degree Course Management - All authenticated users can view */}
+        <Route
+          path="/degreeCourseManagement"
+          element={
+            user ? <DegreeCourseManagementPage /> : <Navigate to="/" replace />
+          }
+        />
+        {/* Create Degree Course - Admin only */}
+        <Route
+          path="/degreeCourseManagement/create"
+          element={
+            user?.isAdministrator ? (
+              <CreateDegreeCourse />
+            ) : (
+              <Navigate to="/degreeCourseManagement" replace />
+            )
+          }
+        />
+        {/* Edit Degree Course - Admin only */}
+        <Route
+          path="/degreeCourseManagement/edit/:id"
+          element={
+            user?.isAdministrator ? (
+              <EditDegreeCourse />
+            ) : (
+              <Navigate to="/degreeCourseManagement" replace />
             )
           }
         />

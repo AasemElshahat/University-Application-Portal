@@ -36,6 +36,7 @@ const NavigationBar = () => {
                                 {user.isAdministrator && (
                                     <Nav.Link as={Link} to="/userManagement" id="OpenUserManagementPageButton">User Management</Nav.Link>
                                 )}
+                                <Nav.Link as={Link} to="/degreeCourseManagement" id="OpenDegreeCourseManagementPageButton">Degree Courses</Nav.Link>
                             </>
                         )}
                     </Nav>
