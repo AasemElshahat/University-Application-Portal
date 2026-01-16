@@ -1,25 +1,17 @@
-import { Button } from "react-bootstrap";
-import LoginDialog from "./components/LoginDialog";
-import { useState } from "react";
+import { Container } from "react-bootstrap";
 
 const LandingPage = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   return (
-    <div
-      className="page-content"
+    <Container
       id="LandingPage"
-      style={{ background: "white" }}
+      className="d-flex flex-column align-items-center justify-content-center"
+      style={{ minHeight: "60vh" }}
     >
-      <LoginDialog show={show} handleClose={handleClose} />
-      <h1>Welcome to the Portal</h1>
-      <Button id="OpenLoginDialogButton" variant="light" onClick={handleShow}>
-        Login
-      </Button>
-    </div>
+      <h1 className="display-4 text-center mb-4">Welcome to the University Portal</h1>
+      <p className="lead text-center text-muted">
+        Please use the login button in the navigation bar to access your account.
+      </p>
+    </Container>
   );
 };
 

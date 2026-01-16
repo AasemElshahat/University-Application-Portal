@@ -62,14 +62,7 @@ const UserManagementPage = () => {
     <Container id="UserManagementPage" className="mt-4">
       <h1>User Management</h1>
 
-      <Button
-        id="OpenStartPageButton"
-        variant="primary"
-        size="lg"
-        onClick={() => navigate("/home")}
-      >
-        Homepage
-      </Button>
+
 
       <Button
         id="UserManagementPageCreateUserButton"

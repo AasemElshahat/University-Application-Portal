@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/store";
 import { logout } from "./state/authSlice";
-import { Button } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const StartPage = () => {
@@ -27,18 +27,10 @@ const StartPage = () => {
         <h1>Hello, {user?.userID}!</h1>
       )}
       {user?.isAdministrator && (
-        <Button
-          id="OpenUserManagementPageButton"
-          variant="primary"
-          size="lg"
-          onClick={() => navigate("/userManagement")} // <--- 3. Navigate
-        >
-          Open User Management
-        </Button>
+        <Alert variant="info" className="mt-3">
+          You have Administrator privileges. Use the Navbar to manage users.
+        </Alert>
       )}
-      <Button id="LogoutButton" variant="secondary" onClick={handleLogout}>
-        Logout
-      </Button>
     </div>
   );
 };
