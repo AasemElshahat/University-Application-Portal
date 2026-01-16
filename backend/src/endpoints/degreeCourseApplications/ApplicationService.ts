@@ -43,7 +43,30 @@ class ApplicationService{
   async getApplications(filter: FilterQuery<IDegreeCourseApplication>){
     try{
       const applications = await ApplicationModel.find(filter);
-      return applications
+
+      // Populate degree course information for each application
+      const populatedApplications = await Promise.all(
+        applications.map(async (app) => {
+          const appObj = app.toJSON();
+
+          // Fetch the degree course details
+          const degreeCourse = await DegreeCourseModel.findById(app.degreeCourseID);
+
+          if (degreeCourse) {
+            return {
+              ...appObj,
+              degreeCourseName: degreeCourse.name,
+              degreeCourseShortName: degreeCourse.shortName,
+              universityName: degreeCourse.universityShortName,
+              departmentName: degreeCourse.departmentShortName
+            };
+          }
+
+          return appObj;
+        })
+      );
+
+      return populatedApplications;
     } catch(error) {
       console.error("Error getting applications:", error)
       throw error
