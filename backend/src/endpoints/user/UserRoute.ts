@@ -100,17 +100,19 @@ userRouter.put("/:userID", authenticateToken ,async (req, res) => {
     let updateData: Partial<IUserData>
 
     if (req.user.isAdministrator) {
-      updateData = req.body
+      updateData = { ...req.body }
     } else {
       updateData = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        password: req.body.password,
       }
     }
 
-    if (req.body.password) {
+    // Only include password if it's provided and non-empty (safety net)
+    if (req.body.password && req.body.password.trim() !== '') {
       updateData.password = req.body.password;
+    } else {
+      delete updateData.password;
     }
     
     const updatedUser = await UserService.updateUser(req.params.userID, updateData)

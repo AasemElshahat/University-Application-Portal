@@ -39,7 +39,24 @@ const EditUser = ({ show, handleClose, user }: EditUserProps) => {
   }, [user]);
 
   const handleEditUser = () => {
-    dispatch(editUser(editFormData)).then((result) => {
+    // Build payload with only non-empty fields to avoid overwriting with empty values
+    const payload: Record<string, string | boolean> = {
+      userID: editFormData.userID,
+      isAdministrator: editFormData.isAdministrator,
+    };
+
+    if (editFormData.firstName.trim()) {
+      payload.firstName = editFormData.firstName;
+    }
+    if (editFormData.lastName.trim()) {
+      payload.lastName = editFormData.lastName;
+    }
+    // Only include password if user entered a new one
+    if (editFormData.password.trim()) {
+      payload.password = editFormData.password;
+    }
+
+    dispatch(editUser(payload as any)).then((result) => {
       if (editUser.fulfilled.match(result)) {
         handleClose();
         setEditFormData({
