@@ -37,6 +37,7 @@ const NavigationBar = () => {
                                     <Nav.Link as={Link} to="/userManagement" id="OpenUserManagementPageButton">User Management</Nav.Link>
                                 )}
                                 <Nav.Link as={Link} to="/degreeCourseManagement" id="OpenDegreeCourseManagementPageButton">Degree Courses</Nav.Link>
+                                <Nav.Link as={Link} to="/degreeCourseApplicationManagement" id="OpenDegreeCourseApplicationManagementPageButton">Applications</Nav.Link>
                             </>
                         )}
                     </Nav>

@@ -43,3 +43,7 @@ Desktop.ini
 # Milestone requirements
 backend/backendMilestonesRequirements/
 frontend/frontendMilestonesRequirements/
+
+
+# Playwright mcp
+.playwright-mcp/

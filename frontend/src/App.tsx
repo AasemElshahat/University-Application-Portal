@@ -8,6 +8,8 @@ import NavigationBar from "./components/Navigation/Navbar";
 import DegreeCourseManagementPage from "./degreeCourseManagement/DegreeCourseManagementPage";
 import CreateDegreeCourse from "./degreeCourseManagement/components/CreateDegreeCourse";
 import EditDegreeCourse from "./degreeCourseManagement/components/EditDegreeCourse";
+import DegreeCourseApplicationManagementPage from "./degreeCourseApplications/DegreeCourseApplicationManagementPage";
+import CreateDegreeCourseApplication from "./degreeCourseApplications/components/CreateDegreeCourseApplication";
 
 const App = () => {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -61,6 +63,21 @@ const App = () => {
             ) : (
               <Navigate to="/degreeCourseManagement" replace />
             )
+          }
+        />
+        {/* Degree Course Application Management - Authenticated Users */}
+        <Route
+          path="/degreeCourseApplicationManagement"
+          element={
+            user ? <DegreeCourseApplicationManagementPage /> : <Navigate to="/" replace />
+          }
+        />
+        {/* Create Application for a Degree Course - Authenticated Users */}
+        {/* The requirements say "Daher sollte es im Studiengang einen Button zum Anlegen von Studienbewerbungen geben" */}
+        <Route
+          path="/degreeCourseApplicationManagement/create/:degreeCourseID"
+          element={
+             user ? <CreateDegreeCourseApplication /> : <Navigate to="/" replace />
           }
         />
         <Route path="*" element={<Navigate to="/" replace />} />
