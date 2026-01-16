@@ -4,3 +4,11 @@ export interface User {
   lastName?: string;
   isAdministrator?: boolean;
 }
+
+export interface CreateUpdateUserData {
+  userID: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  isAdministrator: boolean;
+}

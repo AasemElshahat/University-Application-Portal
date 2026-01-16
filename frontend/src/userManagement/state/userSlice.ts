@@ -1,15 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { User } from "../../types/User";
+import { User, CreateUpdateUserData } from "../../types/User";
 import { RootState } from "../../store/store";
 import API_BASE_URL from "../../config/api";
-
-interface CreateUpdateUserData {
-  userID: string;
-  firstName: string;
-  lastName: string;
-  password: string;
-  isAdministrator: boolean;
-}
 
 interface UserState {
   users: User[];
