@@ -113,7 +113,11 @@ const CreateUser = ({ show, handleClose }: CreateUserProps) => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button
+          id="OpenUserManagementPageListComponentButton"
+          variant="secondary"
+          onClick={handleClose}
+        >
           Close
         </Button>
         <Button
